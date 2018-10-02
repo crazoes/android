@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create an account"
+        android:textColor="@android:color/holo_green_dark"
         android:textSize="26sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="95dp"
@@ -20,35 +21,32 @@
         android:id="@+id/etName"
         android:layout_width="163dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
         android:textSize="16sp"
         android:textStyle="bold"
         android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/etUsername"
-        tools:layout_editor_absoluteX="27dp" />
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="79dp" />
 
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="163dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
         android:textSize="16sp"
         android:textStyle="bold"
         android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/etEmail"
-        tools:layout_editor_absoluteX="27dp" />
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="136dp" />
 
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -56,41 +54,38 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/etPassword"
-        tools:layout_editor_absoluteX="27dp" />
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="191dp" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_height="36dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:textSize="16sp"
         android:textStyle="bold"
         android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/etConfirmPassword"
-        tools:layout_editor_absoluteX="27dp" />
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="245dp" />
 
     <EditText
         android:id="@+id/etConfirmPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPassword"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/etAOF"
-        tools:layout_editor_absoluteX="27dp" />
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="303dp" />
 
     <EditText
         android:id="@+id/etAOF"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_height="41dp"
         android:ems="10"
         android:hint="Area of Interest"
         android:inputType="textPersonName"
@@ -98,11 +93,11 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/etSkills"
-        tools:layout_editor_absoluteX="27dp" />
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="364dp" />
 
     <Button
-        android:id="@+id/bRegister"
+        android:id="@+id/register"
         android:layout_width="95dp"
         android:layout_height="wrap_content"
         android:text="Register"
@@ -112,9 +107,9 @@
         tools:layout_editor_absoluteY="489dp" />
 
     <EditText
-        android:id="@+id/etSkills"
+        android:id="@+id/editText12"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
         android:ems="10"
         android:hint="Add Skills"
         android:inputType="textMultiLine"
