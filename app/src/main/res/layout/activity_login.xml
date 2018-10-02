@@ -6,37 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
         android:textSize="20sp"
         android:textStyle="bold"
         android:typeface="monospace"
-        tools:layout_editor_absoluteX="72dp"
-        tools:layout_editor_absoluteY="165dp" />
+        app:layout_constraintBottom_toTopOf="@+id/etPassword"
+        tools:layout_editor_absoluteX="72dp" />
 
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:textSize="20sp"
         android:textStyle="bold"
         android:typeface="monospace"
-        tools:layout_editor_absoluteX="72dp"
-        tools:layout_editor_absoluteY="228dp" />
+        app:layout_constraintBottom_toTopOf="@+id/bLogin"
+        tools:layout_editor_absoluteX="72dp" />
 
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/bLogin"
         android:layout_width="95dp"
         android:layout_height="wrap_content"
         android:text="Login"
@@ -46,7 +47,7 @@
         tools:layout_editor_absoluteY="296dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/forgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Forget Password?"
@@ -57,15 +58,16 @@
         tools:layout_editor_absoluteY="358dp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/createAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
         android:text="Create an Account?"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="513dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="41dp" />
 
     <android.support.constraint.Group
         android:id="@+id/group"
@@ -73,13 +75,14 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/bRegister"
         android:layout_width="87dp"
         android:layout_height="35dp"
+        android:layout_marginBottom="24dp"
         android:text="Register"
         android:textSize="14sp"
-        tools:layout_editor_absoluteX="216dp"
-        tools:layout_editor_absoluteY="510dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="216dp" />
 
 
 </android.support.constraint.ConstraintLayout>
