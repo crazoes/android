@@ -41,7 +41,7 @@ public class SimpleChipAdapter extends ChipAdapter{
     public View createSearchView(Context context, boolean is_checked, final int pos) {
         View view = View.inflate(context,R.layout.search,null);
         CheckBox cbCheck = view.findViewById(R.id.cbCheck);
-        cbCheck.setText((String)search_data.get(pos));
+        cbCheck.setText(String.valueOf(search_data.get(pos)));
         cbCheck.setChecked(is_checked);
         cbCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
