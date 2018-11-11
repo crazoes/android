@@ -1,7 +1,6 @@
 package com.allyants.chipview;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -19,39 +18,26 @@ import com.google.android.flexbox.FlexboxLayout;
 public class ChipView extends RelativeLayout{
 
     private FlexboxLayout flChips;
-    public EditText etSearch;
+    private EditText etSearch;
     private ListView lvList;
     private ChipAdapter adapter;
     private SimpleSearchAdapter simpleSearchAdapter;
 
     public ChipView(Context context) {
         super(context);
-        init(context, null);
+        init(null);
     }
 
     public ChipView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context, attrs);
+        init(attrs);
     }
 
-    private void init(Context context, AttributeSet attrs){
+    private void init(AttributeSet attrs){
         View view = inflate(getContext(),R.layout.chip_view,this);
         flChips = view.findViewById(R.id.flChips);
         etSearch = view.findViewById(R.id.etSearch);
         lvList = view.findViewById(R.id.lvList);
-
-        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ChipView, 0, 0);
-
-        String hint;
-
-        try {
-            hint = a.getString(R.styleable.ChipView_searchHint);
-        }
-        finally {
-            a.recycle();
-        }
-
-        etSearch.setHint(hint);
     }
 
     public void setAdapter(ChipAdapter adapter){
