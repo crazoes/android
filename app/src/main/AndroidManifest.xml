@@ -11,7 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category
+                    android:name="android.intent.category.LAUNCHER"
+                    android:windowSoftInputMode="adjustResize" />
+            </intent-filter>
+        </activity>
         <activity android:name=".RegisterActivity1"></activity>
         <activity android:name=".RegisterActivity2" />
 
@@ -27,13 +35,6 @@
 
         <activity android:name=".CreateProjectActivity"
             android:theme="@style/MainActivityTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category
-                    android:name="android.intent.category.LAUNCHER"
-                    android:windowSoftInputMode="adjustResize" />
-            </intent-filter>
         </activity>
 
     </application>

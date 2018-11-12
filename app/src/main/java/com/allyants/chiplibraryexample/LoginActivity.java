@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                             public void onResponse(JSONObject response) {
                                 Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
                                 loginButton.setEnabled(true);
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), HomePage.class);
                                 startActivity(intent);
                             }
                         },
