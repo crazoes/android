@@ -18,12 +18,62 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.gson.JsonObject;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class ProfilePage extends AppCompatActivity {
+
+    final ImageView partOf = (ImageView) findViewById(R.id.partOf);
+    final ImageView ideas = (ImageView) findViewById(R.id.ideas);
+    final LinearLayout parentLayout = (LinearLayout)findViewById(R.id.layout);
+
+    ArrayList<View> ownerViews;
+    ArrayList<View> partOfViews;
+
+    protected void showOwner() {
+        // Layout inflater
+        LayoutInflater layoutInflater = getLayoutInflater();
+        for (int i = 0; i < ownerViews.size(); i++){
+            parentLayout.addView(ownerViews.get(i));
+        }
+    }
+
+    protected void showPartOf() {
+        // Layout inflater
+        LayoutInflater layoutInflater = getLayoutInflater();
+        for (int i = 0; i < partOfViews.size(); i++){
+            parentLayout.addView(partOfViews.get(i));
+        }
+    }
+
+    protected void removePartOf() {
+        // Layout inflater
+        LayoutInflater layoutInflater = getLayoutInflater();
+        for (int i = 0; i < partOfViews.size(); i++){
+            parentLayout.removeView(partOfViews.get(i));
+        }
+    }
+
+    protected void removeOwner() {
+        // Layout inflater
+        LayoutInflater layoutInflater = getLayoutInflater();
+        for (int i = 0; i < ownerViews.size(); i++){
+            parentLayout.removeView(partOfViews.get(i));
+        }
+    }
+
 
 
     @Override
@@ -32,7 +82,73 @@ public class ProfilePage extends AppCompatActivity {
         setContentView(R.layout.activity_profile_page);
 
 
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.GET,
+                Constants.endpoint("/me"),
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject obj) {
+                        try {
+                            String name = obj.getString("name");
+                            ArrayList<String> owner = new ArrayList<>();
+                            ArrayList<String> part = new ArrayList<>();
 
+                            JSONArray ownerArray = obj.getJSONArray("owner");
+
+                            for(int i = 0; i < ownerArray.length(); i++) {
+                                String title = ownerArray.getJSONObject(i).getString("title");
+                                owner.add(title);
+                            }
+
+                            JSONArray partArray = obj.getJSONArray("part");
+
+                            for(int i = 0; i < partArray.length(); i++) {
+                                String title = partArray.getJSONObject(i).getString("title");
+                                part.add(title);
+                            }
+
+                            int colorValue = Color.parseColor("#31373d");
+
+                            partOf.setBackgroundColor(colorValue);
+                            LinearLayout parentLayout = (LinearLayout)findViewById(R.id.layout);
+
+                            ideas.setBackgroundColor(Color.parseColor("#999999"));
+                            // Layout inflater
+                            LayoutInflater layoutInflater = getLayoutInflater();
+
+                            for (int i = 0; i < ownerArray.length(); i++){
+                                // Add the text layout to the parent layout
+                                View view = layoutInflater.inflate(R.layout.text_layout, parentLayout, false);
+                                TextView textView1 = (TextView)view.findViewById(R.id.text);
+                                textView1.setText(ownerArray.get(i).toString());
+                                ownerViews.add(view);
+                            }
+
+                            for (int i = 0; i < partArray.length(); i++){
+                                // Add the text layout to the parent layout
+                                View view = layoutInflater.inflate(R.layout.text_layout, parentLayout, false);
+                                TextView textView1 = (TextView)view.findViewById(R.id.text);
+                                textView1.setText(partArray.get(i).toString());
+                                partOfViews.add(view);
+                            }
+
+                            showOwner();
+                        }
+                        catch(JSONException ex) {
+
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        );
+
+        RequestsClient.getInstance(getApplicationContext()).addToRequestQueue(request);
 
         final TextView t0 = (TextView)findViewById(R.id.t0);
         ImageView mShowDialog0 = (ImageView) findViewById(R.id.location);
@@ -141,8 +257,6 @@ public class ProfilePage extends AppCompatActivity {
 
         });
 
-        final ImageView partOf = (ImageView) findViewById(R.id.partOf);
-        final ImageView ideas = (ImageView) findViewById(R.id.ideas);
 
         ideas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,21 +270,8 @@ public class ProfilePage extends AppCompatActivity {
 
                 LinearLayout parentLayout = (LinearLayout)findViewById(R.id.layout);
 
-                // Layout inflater
-                LayoutInflater layoutInflater = getLayoutInflater();
-                View view2;
-
-                for (int i = 1; i < 20; i++){
-                    // Add the text layout to the parent layout
-                    view2 = layoutInflater.inflate(R.layout.text_layout, parentLayout, false);
-
-                    // In order to get the view we have to use the new view with text_layout in it
-                    TextView textView = (TextView)view2.findViewById(R.id.text);
-                    textView.setText("Row " + i);
-
-                    // Add the text view to the parent layout
-                    parentLayout.addView(textView);
-                }
+                removeOwner();
+                showPartOf();
             }
         });
 
@@ -185,27 +286,11 @@ public class ProfilePage extends AppCompatActivity {
                 LinearLayout parentLayout = (LinearLayout)findViewById(R.id.layout);
 
                 ideas.setBackgroundColor(Color.parseColor("#999999"));
-
-
-                // Layout inflater
-                LayoutInflater layoutInflater = getLayoutInflater();
-                View view3;
-
-                for (int i = 20; i < 40; i++){
-                    // Add the text layout to the parent layout
-                    view3 = layoutInflater.inflate(R.layout.text_layout, parentLayout, false);
-
-                    // In order to get the view we have to use the new view with text_layout in it
-                    TextView textView1 = (TextView)view3.findViewById(R.id.text);
-                    textView1.setText("Row " + i);
-
-                    // Add the text view to the parent layout
-                    parentLayout.addView(textView1);
-                }
+                removePartOf();
+                showOwner();
             }
         });
+
+        showOwner();
     }
 }
-
-
-
