@@ -23,8 +23,10 @@
 
         </activity>
         <activity android:name=".HomePage">
+        </activity>
 
-
+        <activity android:name=".CreateProjectActivity"
+            android:theme="@style/MainActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,6 +35,8 @@
                     android:windowSoftInputMode="adjustResize" />
             </intent-filter>
         </activity>
+
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

@@ -41,48 +41,61 @@
             android:textColorHint="@color/colorRegisterHint" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/username"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@color/colorRegisterView"
             android:hint="Username"
+            android:inputType="text"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/colorRegisterText"
+            android:maxLength="30"
+            android:textColorHint="@color/colorRegisterHint" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorRegisterView"
+            android:hint="Email"
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@color/colorRegisterText"
+            android:maxLength="30"
             android:textColorHint="@color/colorRegisterHint" />
 
-        <!-- Login Button -->
-
         <EditText
-            android:id="@+id/email2"
+            android:id="@+id/password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@color/colorRegisterView"
             android:hint="Password"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@color/colorRegisterText"
             android:textColorHint="@color/colorRegisterHint" />
 
         <EditText
-            android:id="@+id/email3"
+            android:id="@+id/passwordConfirm"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@color/colorRegisterView"
             android:hint="Confirm Password"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@color/colorRegisterText"
             android:textColorHint="@color/colorRegisterHint" />
 
         <Button
-            android:id="@+id/btnRegister"
+            android:id="@+id/btnRegisterNext"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
