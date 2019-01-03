@@ -64,7 +64,7 @@ public class CreateProjectActivity extends Activity {
         // ImageGetter coming soon...
         // knifetxt.fromHtml(EXAMPLE);
         //Html.fromHtml(EXAMPLE);
-        // knife.fromHtml(EXAMPLE);
+        knife.fromHtml(EXAMPLE);
         knife.setSelection(knife.getEditableText().length());
         knifetxt.setSelection(knifetxt.getEditableText().length());
         String str;

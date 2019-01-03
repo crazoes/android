@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
                                 loginButton.setEnabled(true);
                                 Intent intent = new Intent(getApplicationContext(), HomePage.class);
+                                intent.putExtra("username", username.getText().toString());
                                 startActivity(intent);
                             }
                         },

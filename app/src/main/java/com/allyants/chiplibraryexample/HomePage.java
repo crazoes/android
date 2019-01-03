@@ -7,6 +7,7 @@ import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
@@ -22,7 +23,15 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +40,7 @@ public class HomePage extends AppCompatActivity {
 
     boolean isOn = false;
     View navView;
+    LayoutInflater layoutInflater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,16 +50,55 @@ public class HomePage extends AppCompatActivity {
 
         final LayoutInflater layoutInflator = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LinearLayout insertPoint = (LinearLayout) findViewById(R.id.r2);
-        List views = new ArrayList();
 
-        for (int i = 0; i < 3; i++) {
-            View view = layoutInflator.inflate(R.layout.feed, null);
-            view.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.WRAP_CONTENT, AbsListView.LayoutParams.WRAP_CONTENT));
-            views.add(view);
-        }
+        Intent intent = getIntent();
+        String username = intent.getExtras().getString("username");
 
-        for (int i = 0; i < views.size(); i++)
-            insertPoint.addView((View) views.get(i));
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET,
+                Constants.endpoint("/users/" + username + "/feed"),
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray array) {
+                        for(int i = 0; i < array.length(); i++) {
+                            try {
+                                JSONObject obj = array.getJSONObject(i);
+                                String title = obj.getString("title");
+                                String description = obj.getString("description");
+                                JSONArray skills = obj.getJSONArray("skills");
+
+                                StringBuilder ss = new StringBuilder();
+                                for(int j = 0; j < skills.length(); j++) {
+                                    JSONObject skill = skills.getJSONObject(j);
+                                    ss.append(" " + skill.getString("skill"));
+                                }
+
+                                LinearLayout insertPoint = (LinearLayout) findViewById(R.id.r2);
+
+                                View view = layoutInflator.inflate(R.layout.feed, null);
+                                ((TextView)view.findViewById(R.id.title)).setText(title);
+                                ((TextView)view.findViewById(R.id.description)).setText(description);
+                                ((TextView)view.findViewById(R.id.skills)).setText(ss.toString());
+                                view.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.WRAP_CONTENT, AbsListView.LayoutParams.WRAP_CONTENT));
+                                insertPoint.addView(view);
+                            }
+                            catch(JSONException ex) {
+                                String trace = Log.getStackTraceString(ex);
+                                ((TextView)findViewById(R.id.debug)).setText(trace);
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        );
+
+        RequestsClient.getInstance(getApplicationContext()).addToRequestQueue(request);
 
         ImageView right = (ImageView)findViewById(R.id.right);
         right.setOnClickListener(new View.OnClickListener() {
@@ -115,11 +164,5 @@ public class HomePage extends AppCompatActivity {
                 isOn = !isOn;
             }
         });
-
     }
-
-
-
-
-
 }

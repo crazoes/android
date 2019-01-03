@@ -28,30 +28,29 @@
                 android:background="@drawable/rectangle" />
 
 
-
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/title"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="50dp"
+                android:background="@color/colorRegisterHint"
                 android:text="Project Title"
                 android:textColor="#000000"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:background="@color/colorRegisterHint"/>
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/description"
                 android:layout_width="280dp"
                 android:layout_height="290dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="90dp"
+                android:background="@color/colorRegisterHint"
                 android:text="Description...."
                 android:textColor="#000000"
                 android:textSize="13sp"
-                android:textStyle="bold"
-                android:background="@color/colorRegisterHint"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -62,12 +61,13 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/skills"
                 android:layout_width="220dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="70dp"
                 android:layout_marginTop="390dp"
-                android:textSize="18sp"
-                android:background="@color/colorRegisterHint"/>
+                android:background="@color/colorRegisterHint"
+                android:textSize="18sp" />
 
 
 

@@ -25,6 +25,7 @@
             android:textSize="40sp"
             android:textStyle="bold"
             app:fontFamily="cursive" />
+
         <EditText
             android:id="@+id/username"
             android:layout_width="fill_parent"
